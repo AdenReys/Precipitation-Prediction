@@ -29,8 +29,6 @@
 - **R²**: 0.00
 - **MSE**: 0.18
 
-![Uploading Untitled.png…]()
-
 #### **kNN vs. Normalized kNN**
 ✅ The **normalized kNN (k=3)** performed better than the non-normalized kNN across all metrics (**R², MAE, MSE**), indicating that normalizing the data improved the model's performance.  
 ✅ After fine-tuning, the **best kNN model** had **10 neighbors**, leading to further improvements in **R², MAE, and MSE**, proving that adjusting the number of neighbors enhances accuracy.  
