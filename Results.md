@@ -29,47 +29,21 @@
 - **R²**: 0.00
 - **MSE**: 0.18
 
-## Key Observations:
-1. **kNN Models**: The kNN models (both with 3 neighbors and the best model with 10 neighbors) showed **negative or very low R² values**, indicating that the model struggled to capture the variance of the target variable. This was especially evident in the 3-neighbor kNN model, which resulted in a negative R² score.
-2. **Normalized kNN**: The normalized kNN model yielded slightly better performance than the non-normalized kNN in terms of **MAE** and **MSE**, but the **R²** value remains low, suggesting a poor fit.
-3. **Weighted kNN**: Both the non-normalized and normalized weighted kNN models produced identical results for **MAE**, **MSE**, and **R²**. This suggests that the weighting did not have a significant impact in this specific test case.
+![Uploading Untitled.png…]()
 
-## Visualizing Model Performance
+#### **kNN vs. Normalized kNN**
+✅ The **normalized kNN (k=3)** performed better than the non-normalized kNN across all metrics (**R², MAE, MSE**), indicating that normalizing the data improved the model's performance.  
+✅ After fine-tuning, the **best kNN model** had **10 neighbors**, leading to further improvements in **R², MAE, and MSE**, proving that adjusting the number of neighbors enhances accuracy.  
 
-To visualize the comparison between the models, the following metrics were considered: **R² Score**, **Mean Absolute Error (MAE)**, and **Mean Squared Error (MSE)**.
+#### **Weighted kNN vs. Normalized Weighted kNN**  
+✅ Both **weighted kNN** and **normalized weighted kNN** performed similarly.  
+✅ **R² was close to 0, and MSE was relatively low**, meaning the predictions were off by a consistent margin.  
+✅ The weighted kNN approach did **not significantly improve** the model.  
 
-### Bar Plot Representation of the Results:
+#### **Decision Tree vs. Fine-Tuned Decision Tree**  
+🚫 The initial **Decision Tree** model performed poorly (**negative R², high MSE & MAE**), likely due to **overfitting or poor generalization**.  
+✅ **Fine-tuning the Decision Tree** (by adjusting **max depth to 2**) significantly improved performance, leading to **positive R²** and lower errors.  
 
-```python
-import matplotlib.pyplot as plt
-
-# Define model names and corresponding metric values
-models = ['kNN (3 Neighbors)', 'Best kNN (10 Neighbors)', 'kNN (Normalized)', 'Weighted kNN (Non-Normalized)', 'Weighted kNN (Normalized)']
-r2_values = [-0.1071, 0.1653, 0.0385, 0.00, 0.00]
-mae_values = [0.267, 0.218, 0.224, 0.30, 0.30]
-mse_values = [0.294, 0.222, 0.255, 0.18, 0.18]
-
-# Create bar plots for each metric
-plt.figure(figsize=(15, 6))
-
-# R² Plot
-plt.subplot(1, 3, 1)
-plt.bar(models, r2_values, color='blue')
-plt.title('R² Score')
-plt.ylabel('R²')
-plt.ylim(-0.2, 0.4)
-
-# MAE Plot
-plt.subplot(1, 3, 2)
-plt.bar(models, mae_values, color='green')
-plt.title('Mean Absolute Error (MAE)')
-plt.ylabel('MAE')
-
-# MSE Plot
-plt.subplot(1, 3, 3)
-plt.bar(models, mse_values, color='red')
-plt.title('Mean Squared Error (MSE)')
-plt.ylabel('MSE')
-
-plt.tight_layout()
-plt.show()
+#### **Challenges (Bumps in the Road)**  
+❌ **Could not normalize Decision Tree data**  
+❌ **Could not normalize Random Forest data**  
